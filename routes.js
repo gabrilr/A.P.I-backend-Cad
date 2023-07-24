@@ -1,9 +1,5 @@
 const express = require('express')
 const routes = express.Router()
-// const bodyParser = require('body-parser');
-
-// routes.use(bodyParser.urlencoded({ extended: true }));
-// routes.use(bodyParser.json());
 
 // Registramos un nuevo usuario
 routes.post('/login', (req, res) => {
@@ -53,7 +49,6 @@ routes.post('/modificarPassword', (req, res) => {
                     return res.status(400).json({ message: 'Contraseña actual incorrecta' });
 
                 }
-
             }
 
             connect.query('UPDATE empleado set contrasena = ? WHERE contrasena = ?', [nuevaContrasena, contrasenaActual], (error, rows) => {
@@ -67,13 +62,9 @@ routes.post('/modificarPassword', (req, res) => {
                     res.status(200).json({ message: 'Contraseña actualizada correctamente' });
 
                 }
-
             })
-
         })
-
     })
-
 });
 
 
@@ -114,7 +105,6 @@ routes.get('/gestorClientes/:idEmpleado', (req, res) => {
             if (error) return res.send(error);
 
             res.json(rows);
-
         })
 
     })
@@ -141,11 +131,8 @@ routes.put('/agregarCliente', (req, res) => {
             if (error) return res.send(error);
 
             res.send('Cliente agregado');
-
         })
-
     })
-
 });
 
 routes.put('/finiquitarCliente', (req, res) => {
@@ -165,11 +152,8 @@ routes.put('/finiquitarCliente', (req, res) => {
             if (error) return res.send(error);
 
             res.send('Cliente finiquitado');
-
         })
-
     })
-
 });
 
 
