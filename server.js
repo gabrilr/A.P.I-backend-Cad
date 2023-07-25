@@ -1,24 +1,26 @@
 const express = require('express')
 const mysql = require('mysql2');
 const myconn = require('express-myconnection');
-const cors = require('cors')
+const cors = require('cors');
+const dotenv = require('dotenv');
 
-const routes = require('./routes')
+const routes = require('./routes');
 
-const app = express()
+dotenv.config();
+const app = express();
 
-app.set('port', process.env.PORT || 3000)
+app.set('port', process.env.PORT || 3001);
 
 
 // middlewares
 
 const dbOptions = {
 
-    host: 'localhost',
-    port: '3306',
-    user: 'root',   
-    password: 'Joga3014_',
-    database: 'cadofi'
+    host: process.env.HOST,
+    port: process.env.PORT_DB,
+    user: process.env.USER,   
+    password: process.env.PASSWORD,
+    database: process.env.DB
 
 }
 
