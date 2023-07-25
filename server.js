@@ -3,6 +3,7 @@ const mysql = require('mysql2');
 const myconn = require('express-myconnection');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const IP = require('ip');
 const routes = require('./routes');
 
 dotenv.config();
@@ -28,7 +29,8 @@ app.use(cors())
 
 //routes-------------------------
 app.get('/', (req, res) => {
-
+    //console.log('Nuevo cliente: ' + req.header('x-forwarded-for') || req.socket.remoteAddress);
+    console.log('Nuevo cliente: ' +  IP.address());
     res.send('<center><h1>Bienvenido a Cadofi</h1></center>');
 })
 
@@ -38,4 +40,5 @@ app.use('/', routes)
 app.listen(app.get('port'), () => {
 
     console.log('Servidor a la escucha en el puerto:', app.get('port'))
+
 })
